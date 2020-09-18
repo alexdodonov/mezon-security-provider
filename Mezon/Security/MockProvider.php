@@ -1,6 +1,6 @@
 <?php
 namespace Mezon\Security;
-//TODO move it to Tests
+
 /**
  * Class MockSecurityProvider
  *
@@ -14,7 +14,7 @@ namespace Mezon\Security;
 /**
  * Class ServiceMockSecurityProvider - provides mockes for all security methods
  */
-class MockProvider implements \Mezon\Security\AuthorizationProviderInterface
+class MockProvider implements AuthorizationProviderInterface
 {
 
     /**
@@ -111,7 +111,7 @@ class MockProvider implements \Mezon\Security\AuthorizationProviderInterface
     /**
      *
      * {@inheritdoc}
-     * @see \Mezon\Service\ServiceSecurityProviderInterface::getLoginFieldName()
+     * @see AuthenticationProviderInterface::getLoginFieldName()
      */
     public function getLoginFieldName(): string
     {

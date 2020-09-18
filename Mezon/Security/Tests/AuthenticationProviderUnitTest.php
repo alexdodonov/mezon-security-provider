@@ -1,4 +1,6 @@
 <?php
+namespace Mezon\Security\Tests;
+
 use Mezon\Security\AuthenticationProvider;
 
 class AuthenticationProviderUnitTest extends \PHPUnit\Framework\TestCase

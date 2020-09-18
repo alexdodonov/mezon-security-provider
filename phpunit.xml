@@ -9,7 +9,7 @@
 
 	<testsuites>
 		<testsuite name="All Tests">
-			<directory suffix="UnitTest.php">./Tests</directory>
+			<directory suffix="UnitTest.php">./Mezon/Security/Tests</directory>
 		</testsuite>
 	</testsuites>
 
@@ -30,9 +30,4 @@
 		<log type="coverage-text" target="php://stdout"
 			showOnlySummary="true"></log>
 	</logging>
-	<groups>
-		<exclude>
-			<group>baseTests</group>
-		</exclude>
-	</groups>
 </phpunit>

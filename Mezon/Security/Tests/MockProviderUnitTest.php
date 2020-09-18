@@ -1,4 +1,5 @@
 <?php
+namespace Mezon\Security\Tests;
 
 use \Mezon\Security\MockProvider;
 
