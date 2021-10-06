@@ -93,7 +93,9 @@ class AuthenticationProviderUnitTest extends \PHPUnit\Framework\TestCase
     {
         // setup
         $mock = $this->getAuthenticationProviderMock();
-        unset($_SESSION[$mock->sessionUserLoginFieldName]);
+        if (isset($_SESSION[$mock->sessionUserLoginFieldName])) {
+            unset($_SESSION[$mock->sessionUserLoginFieldName]);
+        }
 
         // assertions
         $this->expectException(\Exception::class);
