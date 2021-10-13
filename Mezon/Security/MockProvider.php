@@ -27,7 +27,7 @@ class MockProvider implements AuthorizationProviderInterface
     public function createSession(string $token): string
     {
         if ($token === '') {
-            return md5(microtime(true));
+            return md5((string) microtime(true));
         } else {
             return $token;
         }
@@ -44,7 +44,7 @@ class MockProvider implements AuthorizationProviderInterface
      */
     public function connect(string $login, string $password): string
     {
-        return md5(microtime(true));
+        return md5((string) microtime(true));
     }
 
     /**
@@ -105,7 +105,7 @@ class MockProvider implements AuthorizationProviderInterface
      * @param string $permit
      *            Permit name
      */
-    public function validatePermit(string $token, string $permit)
+    public function validatePermit(string $token, string $permit): void
     {}
 
     /**

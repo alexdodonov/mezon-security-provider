@@ -16,15 +16,16 @@ namespace Mezon\Security;
  */
 interface AuthorizationProviderInterface extends AuthenticationProviderInterface
 {
+
     /**
      * Method allows user to login under another user
      *
      * @param string $token
-     *            Token
+     *            token
      * @param string $loginOrId
-     *            In this field login or user id are passed
+     *            in this field login or user id are passed
      * @param string $field
-     *            Contains 'login' or 'id'
+     *            contains 'login' or 'id'
      * @return string New session id
      */
     public function loginAs(string $token, string $loginOrId, string $field): string;
@@ -33,9 +34,9 @@ interface AuthorizationProviderInterface extends AuthenticationProviderInterface
      * Method returns true or false if the session user has permit or not
      *
      * @param string $token
-     *            Token
+     *            token
      * @param string $permit
-     *            Permit name
+     *            permit name
      * @return bool True if the user has permit
      */
     public function hasPermit(string $token, string $permit): bool;
@@ -44,9 +45,9 @@ interface AuthorizationProviderInterface extends AuthenticationProviderInterface
      * Method throws exception if the user does not have permit
      *
      * @param string $token
-     *            Token
+     *            token
      * @param string $permit
-     *            Permit name
+     *            permit name
      */
-    public function validatePermit(string $token, string $permit);
+    public function validatePermit(string $token, string $permit): void;
 }

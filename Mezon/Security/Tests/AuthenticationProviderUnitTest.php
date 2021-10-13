@@ -3,6 +3,10 @@ namespace Mezon\Security\Tests;
 
 use Mezon\Security\AuthenticationProvider;
 
+/**
+ *
+ * @psalm-suppress PropertyNotSetInConstructor
+ */
 class AuthenticationProviderUnitTest extends \PHPUnit\Framework\TestCase
 {
 
@@ -64,7 +68,7 @@ class AuthenticationProviderUnitTest extends \PHPUnit\Framework\TestCase
     protected function getAuthenticationProviderMock(): object
     {
         return $this->getMockBuilder(AuthenticationProvider::class)
-            ->setMethods([
+            ->onlyMethods([
             'sessionId'
         ])
             ->getMock();

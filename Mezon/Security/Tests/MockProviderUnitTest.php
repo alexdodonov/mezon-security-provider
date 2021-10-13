@@ -1,8 +1,12 @@
 <?php
 namespace Mezon\Security\Tests;
 
-use \Mezon\Security\MockProvider;
+use Mezon\Security\MockProvider;
 
+/**
+ *
+ * @psalm-suppress PropertyNotSetInConstructor
+ */
 class MockProviderUnitTest extends \PHPUnit\Framework\TestCase
 {
 
@@ -15,7 +19,7 @@ class MockProviderUnitTest extends \PHPUnit\Framework\TestCase
         $provider = new MockProvider();
 
         // test body
-        $token = $provider->createSession(md5(1));
+        $token = $provider->createSession(md5('1'));
 
         // assertions
         $this->assertEquals(32, strlen($token));
@@ -35,7 +39,7 @@ class MockProviderUnitTest extends \PHPUnit\Framework\TestCase
         // assertions
         $this->assertEquals('token', $token);
     }
-    
+
     /**
      * Testing session with token creation
      */
@@ -60,7 +64,7 @@ class MockProviderUnitTest extends \PHPUnit\Framework\TestCase
 
         $provider->validatePermit('token', 'permit');
 
-        $this->addToAssertionCount(1);
+        $this->assertTrue(true);
     }
 
     /**

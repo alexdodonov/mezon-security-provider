@@ -15,10 +15,10 @@ namespace Mezon\Security;
  */
 class AuthenticationProvider implements \Mezon\Security\AuthenticationProviderInterface
 {
-    
+
     /**
      * Field name in session where we store login of the authorized user
-     * 
+     *
      * @var string
      */
     public $sessionUserLoginFieldName = 'session-user-login';
@@ -97,7 +97,7 @@ class AuthenticationProvider implements \Mezon\Security\AuthenticationProviderIn
      */
     public function connect(string $login, string $password): string
     {
-        $token = md5(microtime(true));
+        $token = md5((string) microtime(true));
 
         $this->sessionId($token);
 
