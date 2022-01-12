@@ -16,4 +16,13 @@ namespace Mezon\Security;
  */
 interface ProviderInterface
 {
+
+    /**
+     * Method creates session from existing token or fetched from HTTP headers
+     *
+     * @param string $token
+     *            session token
+     * @return string session token
+     */
+    public function createSession(string $token): string;
 }
