@@ -8,7 +8,7 @@ namespace Mezon\Security;
  * @subpackage AuthenticationProviderInterface
  * @author Dodonov A.A.
  * @version v.1.0 (2019/08/08)
- * @copyright Copyright (c) 2019, aeon.org
+ * @copyright Copyright (c) 2019, http://aeon.su
  */
 
 /**
@@ -21,8 +21,8 @@ interface AuthenticationProviderInterface extends ProviderInterface
      * Method creates session from existing token or fetched from HTTP headers
      *
      * @param string $token
-     *            Session token
-     * @return string Session token
+     *            session token
+     * @return string session token
      */
     public function createSession(string $token): string;
 
@@ -30,10 +30,10 @@ interface AuthenticationProviderInterface extends ProviderInterface
      * Method creates conection session
      *
      * @param string $login
-     *            Login
+     *            login
      * @param string $password
-     *            Password
-     * @return string Session id of the created session
+     *            password
+     * @return string session id of the created session
      */
     public function connect(string $login, string $password): string;
 
@@ -54,14 +54,14 @@ interface AuthenticationProviderInterface extends ProviderInterface
     /**
      * Method returns field name for login
      *
-     * @return string Field name
+     * @return string field name
      */
     public function getLoginFieldName(): string;
 
     /**
      * Method returns field name for session_id
      *
-     * @return string Field name
+     * @return string field name
      */
     public function getSessionIdFieldName(): string;
 }

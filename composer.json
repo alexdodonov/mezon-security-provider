@@ -15,7 +15,8 @@
 		"vimeo/psalm": "^4.2"
 	},
 	"require": {
-		"php": ">=7.2.0"
+		"php": ">=7.2.0",
+		"mezon/infrastructure-layer": "1.2.*"
 	},
 	"support": {
 		"email": "alexey@dodonov.pro",
@@ -32,6 +33,7 @@
 	},
 	"scripts": {
 		"tests": "php ./vendor/phpunit/phpunit/phpunit",
-		"psalm": "php ./vendor/vimeo/psalm/psalm --show-info=true --no-cache"
+		"psalm": "php ./vendor/vimeo/psalm/psalm --show-info=true --no-cache",
+		"psalm-self": "php ./vendor/vimeo/psalm/psalm --show-info=true --no-cache --config=psalm-self.xml"
 	}
 }

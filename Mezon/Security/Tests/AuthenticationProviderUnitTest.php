@@ -2,13 +2,25 @@
 namespace Mezon\Security\Tests;
 
 use Mezon\Security\AuthenticationProvider;
+use PHPUnit\Framework\TestCase;
+use Mezon\Conf\Conf;
 
 /**
  *
  * @psalm-suppress PropertyNotSetInConstructor
  */
-class AuthenticationProviderUnitTest extends \PHPUnit\Framework\TestCase
+class AuthenticationProviderUnitTest extends TestCase
 {
+
+    /**
+     *
+     * {@inheritdoc}
+     * @see TestCase::setUp()
+     */
+    protected function setUp(): void
+    {
+        Conf::setConfigStringValue('session/layer', 'mock');
+    }
 
     /**
      * Testing getLoginFieldName
@@ -61,30 +73,16 @@ class AuthenticationProviderUnitTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Creating mock of the AuthenticationProvider
-     *
-     * @return object mock of the AuthenticationProvider
-     */
-    protected function getAuthenticationProviderMock(): object
-    {
-        return $this->getMockBuilder(AuthenticationProvider::class)
-            ->onlyMethods([
-            'sessionId'
-        ])
-            ->getMock();
-    }
-
-    /**
      * Testing createSession
      */
     public function testCreateSession(): void
     {
         // setup
-        $mock = $this->getAuthenticationProviderMock();
-        $_SESSION[$mock->sessionUserLoginFieldName] = 'login';
+        $securityProvider = new AuthenticationProvider();
+        $_SESSION[$securityProvider->sessionUserLoginFieldName] = 'login';
 
         // test body
-        $token = $mock->createSession('created-token');
+        $token = $securityProvider->createSession('created-token');
 
         // assertions
         $this->assertEquals('created-token', $token);
@@ -96,16 +94,17 @@ class AuthenticationProviderUnitTest extends \PHPUnit\Framework\TestCase
     public function testCreateSessionException(): void
     {
         // setup
-        $mock = $this->getAuthenticationProviderMock();
-        if (isset($_SESSION[$mock->sessionUserLoginFieldName])) {
-            unset($_SESSION[$mock->sessionUserLoginFieldName]);
+        $securityProvider = new AuthenticationProvider();
+
+        if (isset($_SESSION[$securityProvider->sessionUserLoginFieldName])) {
+            unset($_SESSION[$securityProvider->sessionUserLoginFieldName]);
         }
 
         // assertions
         $this->expectException(\Exception::class);
 
         // test body
-        $mock->createSession('not-created-token');
+        $securityProvider->createSession('not-created-token');
     }
 
     /**
@@ -114,13 +113,13 @@ class AuthenticationProviderUnitTest extends \PHPUnit\Framework\TestCase
     public function testConnect(): void
     {
         // setup
-        $mock = $this->getAuthenticationProviderMock();
+        $securityProvider = new AuthenticationProvider();
 
         // test body
-        $mock->connect('login@localhost', 'root');
+        $securityProvider->connect('login@localhost', 'root');
 
         // assertions
-        $this->assertEquals('login@localhost', $_SESSION[$mock->sessionUserLoginFieldName]);
+        $this->assertEquals('login@localhost', $_SESSION[$securityProvider->sessionUserLoginFieldName]);
         $this->assertEquals(1, $_SESSION['session-user-id']);
     }
 }

@@ -1,19 +1,21 @@
 <?php
 namespace Mezon\Security;
 
+use Mezon\Session\Layer;
+
 /**
  * Class AuthenticationProvider
  *
  * @package Security
  * @subpackage AuthenticationProvider
  * @version v.1.0 (2020/03/19)
- * @copyright Copyright (c) 2020, aeon.org
+ * @copyright Copyright (c) 2020, http://aeon.su
  */
 
 /**
  * Class provides simple and the most common functionality
  */
-class AuthenticationProvider implements \Mezon\Security\AuthenticationProviderInterface
+class AuthenticationProvider implements AuthenticationProviderInterface
 {
 
     /**
@@ -30,7 +32,7 @@ class AuthenticationProvider implements \Mezon\Security\AuthenticationProviderIn
      */
     public function getSelfLogin(): string
     {
-        return $_SESSION[$this->sessionUserLoginFieldName];
+        return (string) $_SESSION[$this->sessionUserLoginFieldName];
     }
 
     /**
@@ -60,7 +62,7 @@ class AuthenticationProvider implements \Mezon\Security\AuthenticationProviderIn
      */
     public function getSelfId(): int
     {
-        return $_SESSION['session-user-id'];
+        return (int) $_SESSION['session-user-id'];
     }
 
     /**
@@ -71,7 +73,7 @@ class AuthenticationProvider implements \Mezon\Security\AuthenticationProviderIn
      */
     protected function sessionId(string $token): void
     {
-        session_id($token);
+        Layer::sessionId($token);
     }
 
     /**
