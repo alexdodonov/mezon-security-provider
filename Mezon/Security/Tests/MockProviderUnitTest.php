@@ -88,4 +88,20 @@ class MockProviderUnitTest extends \PHPUnit\Framework\TestCase
 
         $this->assertTrue($provider->hasPermit('t', 'p'));
     }
+
+    /**
+     * Testing hasPermit method
+     */
+    public function testHasPermits(): void
+    {
+        $provider = new MockProvider();
+        $provider->hasPermitResults = [
+            true,
+            false
+        ];
+
+        $this->assertTrue($provider->hasPermit('t', 'p'));
+        $this->assertFalse($provider->hasPermit('t', 'p'));
+        $this->assertTrue($provider->hasPermit('t', 'p'));
+    }
 }

@@ -84,6 +84,13 @@ class MockProvider implements AuthorizationProviderInterface
     }
 
     /**
+     * Result for the hasPermit method
+     *
+     * @var bool[]
+     */
+    public $hasPermitResults = [];
+
+    /**
      * Method returns true or false if the session user has permit or not
      *
      * @param string $token
@@ -94,7 +101,11 @@ class MockProvider implements AuthorizationProviderInterface
      */
     public function hasPermit(string $token, string $permit): bool
     {
-        return true;
+        if (empty($this->hasPermitResults)) {
+            return true;
+        } else {
+            return array_shift($this->hasPermitResults);
+        }
     }
 
     /**
